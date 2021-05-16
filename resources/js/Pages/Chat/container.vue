@@ -9,7 +9,11 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white p-3 overflow-hidden shadow-xl sm:rounded-lg">
-                    {{rooms}}
+                   <span v-if="rooms.length">
+                       <span v-for="r in rooms" :key="r.id">
+                           {{r}}
+                       </span>
+                   </span>
                     <Message/>
                     <inputMessage/>
                 </div>
