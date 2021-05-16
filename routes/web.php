@@ -16,18 +16,18 @@ use App\Http\Controllers\ChatController;
 |
 */
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
-
 Route::get('/', function () {
-    return 'Welcome to Chatify';
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
+
+// Route::get('/', function () {
+//     return 'Welcome to Chatify';
+// });
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -41,7 +41,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/chat', function () {
 
 
 Route::middleware('auth:sanctum')->get('/chat/rooms',[ChatController::class,'rooms']);
-Route::middleware('auth:sanctum')->get('/chat/{roomId}/messages',
-[ChatController::class,'message']);
-Route::middleware(['auth:sanctum'])->post('chat/{roomId}/message',
+Route::middleware('auth:sanctum')->get('/chat/room/{roomId}/messages',
+[ChatController::class,'messages']);
+Route::middleware(['auth:sanctum'])->post('chat/room/{roomId}/message',
 [ChatController::class,'newMessage']);
